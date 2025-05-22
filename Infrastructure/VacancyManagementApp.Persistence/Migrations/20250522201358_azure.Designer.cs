@@ -12,8 +12,8 @@ using VacancyManagementApp.Persistence.Contexts;
 namespace VacancyManagementApp.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241125195149_mig3")]
-    partial class mig3
+    [Migration("20250522201358_azure")]
+    partial class azure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -149,6 +149,9 @@ namespace VacancyManagementApp.Persistence.Migrations
                     b.Property<Guid>("QuestionId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
@@ -183,6 +186,9 @@ namespace VacancyManagementApp.Persistence.Migrations
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("VacancyId")
                         .HasColumnType("uniqueidentifier");
@@ -314,6 +320,9 @@ namespace VacancyManagementApp.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("VacancyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -344,6 +353,9 @@ namespace VacancyManagementApp.Persistence.Migrations
 
                     b.Property<int>("TrueQuestionCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("VacancyId")
                         .HasColumnType("uniqueidentifier");
@@ -379,6 +391,9 @@ namespace VacancyManagementApp.Persistence.Migrations
 
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -416,6 +431,9 @@ namespace VacancyManagementApp.Persistence.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
