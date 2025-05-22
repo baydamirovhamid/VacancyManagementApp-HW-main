@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup .NET
@@ -19,11 +19,18 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore VacancyManagementApp.sln
+      - name: Restore
+        run: dotnet restore Presentation/VacancyManagementApp.API/VacancyManagementApp.API.csproj
 
-      - name: Build solution
-        run: dotnet build VacancyManagementApp.sln --configuration Release
+      - name: Build
+        run: dotnet build Presentation/VacancyManagementApp.API/VacancyManagementApp.API.csproj --configuration Release
 
-      - name: Publish UI project
-        run: dotnet publish Presentation/VacancyManagementApp.API/VacancyManagementApp.API.csproj --configuration Release --no-build --output ./publish
+      - name: Publish
+        run: dotnet publish Presentation/VacancyManagementApp.API/VacancyManagementApp.API.csproj --configuration Release --no-build --output './publish'
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: vacancy-management
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: './publish'
